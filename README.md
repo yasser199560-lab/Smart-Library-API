@@ -122,7 +122,7 @@ smart_library/
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/smart_library_api.git
+git clone https://github.com/yasser199560-lab/Smart-Library-API
 
 cd smart_library
 ```
