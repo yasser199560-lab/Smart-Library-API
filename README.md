@@ -1,121 +1,309 @@
-# TS CRUD APIs
+# 📚 Smart Library API
 
-A RESTful CRUD API built with **Node.js**, **Express**, **TypeScript**, and **MongoDB (Mongoose)**.
-This project demonstrates clean API structure, data modeling, validation, and best practices for scalable backend development.
+A RESTful API for a **Smart Library Management System** built with **Node.js**, **Express.js**, **TypeScript**, and **MongoDB**.
 
----
-
-## Features
-
-* CRUD operations for users
-* RESTful routing and controllers
-* MongoDB integration using Mongoose
-* TypeScript with strict typing
-* Environment variable management with dotenv
-* Centralized error handling
----
-
-## Tech Stack
-
-* **Node.js**
-* **Express.js**
-* **TypeScript**
-* **MongoDB + Mongoose**
-* **Nodemon** (development)
+The system manages books, authors, publishers, members, membership cards, borrowing operations, course enrollment, and provides a scalable backend architecture with validation and centralized error handling.
 
 ---
 
-## Project Structure
+# 📖 Project Description
+
+The Smart Library API is designed to automate and simplify library management by allowing administrators to manage books, members, publishers, authors, borrowing records, membership cards, courses, and enrollments through RESTful API endpoints.
+
+The system provides a structured backend that demonstrates best practices for Express applications using TypeScript and MongoDB.
+
+---
+
+# ✨ Features
+
+## 📚 Book Management
+- Create, update, delete and retrieve books
+- Link books to authors and publishers
+- Store book prices and availability
+
+## 👤 Member Management
+- Register library members
+- Update and delete member information
+- View all registered members
+
+## 🪪 Membership Cards
+- One membership card per member
+- Track membership information
+
+## 📖 Borrowing System
+- Borrow books
+- Return books
+- Track borrowing history
+- Prevent invalid borrowing operations
+
+## ✍️ Author Management
+- Manage library authors
+
+## 🏢 Publisher Management
+- Manage book publishers
+
+## 🎓 Course Management
+- Create library courses
+- Enroll members into courses
+
+## ✅ Validation
+- Request validation using **Zod**
+- Prevent invalid data from entering the database
+
+## ⚠️ Error Handling
+- Centralized error handling middleware
+- Consistent JSON error responses
+
+---
+
+# 🛠 Technologies Used
+
+- Node.js
+- Express.js
+- TypeScript
+- MongoDB
+- Mongoose
+- Zod
+- Nodemon
+- Postman
+- Git & GitHub
+
+---
+
+# 📁 Project Structure
 
 ```
-ts-crud-apis/
-├── src/
-│   ├── config/          # Database connection
-│   │   └── db.ts
-│   ├── controllers/     # Business logic
-│   │   └── user.controller.ts
-│   ├── models/          # Mongoose schemas
-│   │   └── user.model.ts
-│   ├── routes/          # API routes
-│   │   └── user.routes.ts
-│   ├── middlewares/     # Custom middlewares
-│   │   ├── error.middleware.ts
-│   ├── app.ts           # Express app setup
-│   └── server.ts        # Server bootstrap
-├── .env                 # Environment variables
-├── tsconfig.json
+smart_library/
+│
+├── src
+│   ├── models
+│   │   ├── author.model.ts
+│   │   ├── book.model.ts
+│   │   ├── borrow.model.ts
+│   │   ├── card.model.ts
+│   │   ├── course.model.ts
+│   │   ├── enrol.model.ts
+│   │   ├── member.model.ts
+│   │   └── publisher.model.ts
+│   │
+│   ├── routes
+│   │   ├── author.routes.ts
+│   │   ├── book.routes.ts
+│   │   ├── borrow.routes.ts
+│   │   ├── card.routes.ts
+│   │   ├── course.routes.ts
+│   │   ├── enrol.routes.ts
+│   │   ├── member.routes.ts
+│   │   └── publisher.routes.ts
+│   │
+│   ├── validators
+│   │   ├── author.validator.ts
+│   │   ├── book.validator.ts
+│   │   ├── borrow.validator.ts
+│   │   ├── card.validator.ts
+│   │   ├── course.validator.ts
+│   │   ├── enrol.validator.ts
+│   │   ├── member.validator.ts
+│   │   └── publish.validator.ts
+│   │
+│   ├── app.ts
+│   └── server.ts
+│
+├── .env
 ├── package.json
+├── tsconfig.json
 └── README.md
 ```
 
 ---
 
-## Installation & Setup
+# 🚀 Installation
 
-### 1. Clone the repository
+## 1. Clone the repository
 
 ```bash
-git clone git@github.com:RimDH/ts-crud-apis.git
-cd ts-crud-apis
+git clone https://github.com/your-username/smart_library_api.git
+
+cd smart_library
 ```
 
-### 2. Install dependencies
+---
+
+## 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Environment variables
+---
 
-Create a `.env` file in the root directory:
+## 3. Create Environment Variables
+
+Create a `.env` file in the project root.
 
 ```env
-PORT=3000
-MONGO_URI=YOUR_MONGO_URI
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
 ```
 
 ---
 
-## Available Scripts
+## 4. Run the project
 
-```json
-"scripts": {
-  "dev": "nodemon --exec ts-node server.ts",
-  "build": "tsc",
-  "start": "node dist/server.js"
-}
+Development
+
+```bash
+npm run dev
 ```
 
-* **npm run dev** – Start development server with hot reload
-* **npm run build** – Compile TypeScript to JavaScript
-* **npm start** – Run compiled production build
+Production
+
+```bash
+npm run build
+
+npm start
+```
 
 ---
 
-## API Endpoints
+# 📡 API Endpoints
 
-Base URL: `http://localhost:3000/api/users`
+## 📚 Books
 
-| Method | Endpoint | Description    |
-| -----: | -------- | -------------- |
-|   POST | `/`      | Create a user  |
-|    GET | `/`      | Get all users  |
-|    GET | `/:id`   | Get user by ID |
-|    PUT | `/:id`   | Update user    |
-| DELETE | `/:id`   | Delete user    |
-
----
-
-## Error Handling
-
-All errors are handled by a global error middleware:
-
-* Centralized error responses
-* Prevents application crashes
-* Returns consistent JSON error format
+| Method | Endpoint | Description |
+|----------|----------------|----------------|
+| POST | /api/books | Create book |
+| GET | /api/books | Get all books |
+| GET | /api/books/:id | Get single book |
+| PUT | /api/books/:id | Update book |
+| DELETE | /api/books/:id | Delete book |
 
 ---
 
-## License
+## ✍️ Authors
 
-This project is open-source and free to use for learning and development purposes.
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/authors |
+| GET | /api/authors |
+| GET | /api/authors/:id |
+| PUT | /api/authors/:id |
+| DELETE | /api/authors/:id |
+
+---
+
+## 🏢 Publishers
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/publishers |
+| GET | /api/publishers |
+| GET | /api/publishers/:id |
+| PUT | /api/publishers/:id |
+| DELETE | /api/publishers/:id |
+
+---
+
+## 👤 Members
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/members |
+| GET | /api/members |
+| GET | /api/members/:id |
+| PUT | /api/members/:id |
+| DELETE | /api/members/:id |
+
+---
+
+## 🪪 Membership Cards
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/cards |
+| GET | /api/cards |
+| GET | /api/cards/:id |
+| PUT | /api/cards/:id |
+| DELETE | /api/cards/:id |
+
+---
+
+## 📖 Borrowing
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/borrow |
+| GET | /api/borrow |
+| GET | /api/borrow/:id |
+| PUT | /api/borrow/:id |
+| DELETE | /api/borrow/:id |
+
+---
+
+## 🎓 Courses
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/courses |
+| GET | /api/courses |
+| GET | /api/courses/:id |
+| PUT | /api/courses/:id |
+| DELETE | /api/courses/:id |
+
+---
+
+## 📝 Enrollments
+
+| Method | Endpoint |
+|----------|----------------|
+| POST | /api/enrollments |
+| GET | /api/enrollments |
+| GET | /api/enrollments/:id |
+| PUT | /api/enrollments/:id |
+| DELETE | /api/enrollments/:id |
+
+---
+
+# 📬 Testing
+
+All endpoints were tested using **Postman**.
+
+The project includes a Postman Collection that can be imported directly to test every endpoint.
+
+---
+
+# ⚠️ Error Handling
+
+The API uses centralized error handling to provide consistent responses.
+
+Features include:
+
+- Global error middleware
+- Validation error responses
+- HTTP status codes
+- JSON formatted error messages
+
+---
+
+# 📌 Future Improvements
+
+- JWT Authentication
+- Role-based Authorization
+- Pagination
+- Search & Filtering
+- Swagger API Documentation
+- Docker Support
+
+---
+
+# 👨‍💻 Developer
+
+**Yasser Kayed**
+
+Backend project developed using **Node.js**, **Express**, **TypeScript**, and **MongoDB** for learning REST API development and backend architecture.
+
+---
+
+# 📄 License
+
+This project is intended for educational purposes and may be freely used for learning and development.
